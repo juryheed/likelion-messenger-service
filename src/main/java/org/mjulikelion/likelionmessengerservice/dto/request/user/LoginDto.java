@@ -10,8 +10,8 @@ public class LoginDto {
 
     //companyId
     @NotBlank(message = "근무자 아이디가 누락되었습니다")
-    @Size(min=5,max=20,message = "아이디는 최소 5글자 최대 20글자 입니다")
-    private String companyId;
+    @Size(min=5,max=20,message = "직원 번호는 최소 5글자 최대 20글자 입니다")
+    private String employeeNumber;
 
     //password
     @NotBlank(message = "비밀번호가 누락되었습니다")

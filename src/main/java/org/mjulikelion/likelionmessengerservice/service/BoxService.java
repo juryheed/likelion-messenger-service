@@ -3,9 +3,9 @@ package org.mjulikelion.likelionmessengerservice.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mjulikelion.likelionmessengerservice.dto.response.*;
-import org.mjulikelion.likelionmessengerservice.model.Messenger;
+import org.mjulikelion.likelionmessengerservice.model.Message;
 import org.mjulikelion.likelionmessengerservice.model.User;
-import org.mjulikelion.likelionmessengerservice.repository.MessengerRepository;
+import org.mjulikelion.likelionmessengerservice.repository.MessageRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -16,31 +16,31 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class BoxService {
-    private MessengerRepository messengerRepository;
+    private MessageRepository messageRepository;
 
     // 전체 메신저 기록 보기
-    public MessengerListResponseData messengerAll(User user) {
+    public MessageListResponseData messageAll(User user) {
         // 내가 수신,발신한 모든 메신저 찾기
-        List<Messenger> messengers = messengerRepository.findBySenderOrReceiver(user.getCompanyId(), user.getCompanyId());
+        List<Message> Messages = messageRepository.findBySenderOrReceiver(user.getEmployeeNumber(), user.getEmployeeNumber());
 
-        List<MessengerResponseData> messengerResponseList = new LinkedList<>();
+        List<MessageResponseData> messageResponseList = new LinkedList<>();
 
-        for (Messenger m : messengers) {
-            MessengerResponseData messengerResponseData = MessengerResponseData.builder()
+        for (Message m : Messages) {
+            MessageResponseData messageResponseData = MessageResponseData.builder()
                     .sender(m.getSender())
-                    .messengerId(m.getId())
+                    .messageId(m.getId())
                     .receiver(m.getReceiver())
-                    .count(m.getCount())
+                    .messageRead(m.getMessageRead())
                     .time(m.getUpdatedAt())
                     .build();
-            messengerResponseList.add(messengerResponseData);
+            messageResponseList.add(messageResponseData);
         }
 
-        MessengerListResponseData messengerListResponseData=MessengerListResponseData.builder()
-                .messengerList(messengerResponseList)
+        MessageListResponseData messageListResponseData= MessageListResponseData.builder()
+                .messengerList(messageResponseList)
                 .build();
 
-        return messengerListResponseData;
+        return messageListResponseData;
     }
 
 }

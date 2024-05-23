@@ -7,7 +7,6 @@ import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.util.List;
-
 @Builder
 @Getter
 @AllArgsConstructor
@@ -23,16 +22,16 @@ public class User extends BaseEntity {
     @Column(nullable = false,length = 20)
     private String name;
 
-    //companyId
+    //employeeNumber
     @Column(nullable = false,length = 20,unique = true)
-    private final String companyId;
+    private final String employeeNumber;
 
     //password
     @Setter
     @Column(nullable = false,length = 100)
     private String password;
 
-    // messengers
+    // message
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Messenger> messengers;
+    private List<Message> message;
 }

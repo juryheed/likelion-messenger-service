@@ -22,9 +22,9 @@ public class AuthService {
     //로그인
     public void login(LoginDto loginDto){
         //유저 찾기
-        User user=userRepository.findByCompanyId(loginDto.getCompanyId());
+        User user=userRepository.findByEmployeeNumber(loginDto.getEmployeeNumber());
         if(null==user){
-            throw new NotFoundException(ErrorCode.COMPANYID_NOT_FOUND);
+            throw new NotFoundException(ErrorCode.EMPLOIEE_NOT_FOUND);
         }
 
         //직원아이디와 비밀번호 일치 확인
@@ -39,15 +39,15 @@ public class AuthService {
         String hashedPassword=passwordHashEncryption.encrypt(plainPassword);
 
         //직원아이디 중복 확인
-        User user=userRepository.findByCompanyId(signupDto.getCompanyId());
+        User user=userRepository.findByEmployeeNumber(signupDto.getEmployeeNumber());
         if(null!=user){
-            throw new ConflictException(ErrorCode.COMPANYID_DUPLICATION);
+            throw new ConflictException(ErrorCode.EMPLOIEE_DUPLICATION);
         }
 
         //유저 만들어주기
         User newUser = User.builder()
                 .name(signupDto.getName())
-                .companyId(signupDto.getCompanyId())
+                .employeeNumber(signupDto.getEmployeeNumber())
                 .password(hashedPassword)   //암호화 된 Password가 들어감
                 .build();
         userRepository.save(newUser);

@@ -1,4 +1,4 @@
-package org.mjulikelion.likelionmessengerservice.dto.request.messenger;
+package org.mjulikelion.likelionmessengerservice.dto.request.message;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -3,7 +3,7 @@ package org.mjulikelion.likelionmessengerservice.controller;
 import lombok.AllArgsConstructor;
 import org.mjulikelion.likelionmessengerservice.authentication.AuthenticatedUser;
 import org.mjulikelion.likelionmessengerservice.dto.ResponseDto;
-import org.mjulikelion.likelionmessengerservice.dto.response.MessengerListResponseData;
+import org.mjulikelion.likelionmessengerservice.dto.response.MessageListResponseData;
 import org.mjulikelion.likelionmessengerservice.model.User;
 import org.mjulikelion.likelionmessengerservice.service.BoxService;
 import org.springframework.http.HttpStatus;
@@ -20,8 +20,8 @@ public class BoxController {
 
     //전체 메진저 보기
     @GetMapping
-    public ResponseEntity<ResponseDto<MessengerListResponseData>> messengerAll(@AuthenticatedUser User user){
-        MessengerListResponseData messengerListResponseData = boxService.messengerAll(user);
+    public ResponseEntity<ResponseDto<MessageListResponseData>> messengerAll(@AuthenticatedUser User user){
+        MessageListResponseData messengerListResponseData = boxService.messageAll(user);
 
         return new ResponseEntity<>(ResponseDto.res(
                 HttpStatus.OK,

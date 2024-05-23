@@ -45,7 +45,7 @@ public class UserService {
 
 
     public User findUser(LoginDto loginDto){
-        User user=userRepository.findByCompanyId(loginDto.getCompanyId());
+        User user=userRepository.findByEmployeeNumber(loginDto.getEmployeeNumber());
         return user;
     }
 }

@@ -2,13 +2,14 @@ package org.mjulikelion.likelionmessengerservice.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;
+import org.mjulikelion.likelionmessengerservice.model.User;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Builder
-public class OneMessengerResponseData {
+public class OneMessageResponseData {
     //발신자, 수신자, 내용 , 시간, 메신저ID가 있다
     private String receiver;
     private String sender;

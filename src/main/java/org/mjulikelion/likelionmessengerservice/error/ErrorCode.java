@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum ErrorCode {
 
     //인증
-    PASSWORD_NOT_EQUAL("4010", "직원 아이디와 패스워드가 일치하지 않습니다"),
+    PASSWORD_NOT_EQUAL("4010", "직원번호와 패스워드가 일치하지 않습니다"),
 
     //인가(접근)
     CANT_ACCESS("4030", "접근이 불가합니다"),
@@ -16,13 +16,13 @@ public enum ErrorCode {
     TOKEN_INVALID("4032", "토큰이 유효하지 않습니다"),
 
     //리소스 찾을 수 없음
-    COMPANYID_NOT_FOUND("4040", "직원를 찾을 수 없습니다."),
-    MESSENGER_NOT_FOUND("4041", "메신저를 찾을 수 없습니다."),
+    EMPLOIEE_NOT_FOUND("4040", "직원를 찾을 수 없습니다."),
+    MESSAGE_NOT_FOUND("4041", "메신저를 찾을 수 없습니다."),
     CONTENT_NOT_FOUND("4042", "메신저 내용을 찾을 수 없습니다"),
     RECIEVER_NOT_FOUND("4043","수신자를 찾을수 없습니다"),
 
     //리소스 중복
-    COMPANYID_DUPLICATION("4090", "이미 가입된 직원 입니다"),
+    EMPLOIEE_DUPLICATION("4090", "이미 가입된 직원 입니다"),
 
     NOT_NULL("9001", "필수값이 누락되었습니다."),
     NOT_BLANK("9002", "필수값이 빈 값이거나 공백으로 되어있습니다."),

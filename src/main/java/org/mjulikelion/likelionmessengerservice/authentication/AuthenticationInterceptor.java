@@ -38,6 +38,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     private User findExistingUser(final UUID userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException(ErrorCode.COMPANYID_NOT_FOUND));
+                .orElseThrow(() -> new NotFoundException(ErrorCode.EMPLOIEE_DUPLICATION));
     }
 }
