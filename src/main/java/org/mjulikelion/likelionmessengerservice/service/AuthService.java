@@ -2,8 +2,8 @@ package org.mjulikelion.likelionmessengerservice.service;
 
 import lombok.AllArgsConstructor;
 import org.mjulikelion.likelionmessengerservice.authentication.PasswordHashEncryption;
-import org.mjulikelion.likelionmessengerservice.dto.request.LoginDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.SignupDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.user.LoginDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.user.SignupDto;
 import org.mjulikelion.likelionmessengerservice.error.ErrorCode;
 import org.mjulikelion.likelionmessengerservice.error.exception.ConflictException;
 import org.mjulikelion.likelionmessengerservice.error.exception.ForbiddenException;

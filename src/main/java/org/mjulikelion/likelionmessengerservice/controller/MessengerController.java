@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mjulikelion.likelionmessengerservice.authentication.AuthenticatedUser;
 import org.mjulikelion.likelionmessengerservice.dto.ResponseDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.ModifyDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.ReplyDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.SendMessengerDto;
-import org.mjulikelion.likelionmessengerservice.dto.response.MessengerResponseData;
+import org.mjulikelion.likelionmessengerservice.dto.request.messenger.ModifyDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.messenger.ReplyDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.messenger.SendMessengerDto;
 import org.mjulikelion.likelionmessengerservice.dto.response.OneMessengerResponseData;
 import org.mjulikelion.likelionmessengerservice.model.User;
 import org.mjulikelion.likelionmessengerservice.service.MessengerService;
@@ -28,7 +27,6 @@ public class MessengerController {
     //메신저 보내기
     @PostMapping
     public ResponseEntity<ResponseDto<Void>> sendMessenger(@AuthenticatedUser User user, @RequestBody @Valid SendMessengerDto sendMessengerDto) {
-
         messengerService.sendMessenger(user,sendMessengerDto);
 
         return new ResponseEntity<>(ResponseDto.res(
@@ -51,8 +49,7 @@ public class MessengerController {
 
     //(내가 발신인 일때)읽지 않은 메신저 수정하기
     @PatchMapping("/{messengerid}")
-    public ResponseEntity<ResponseDto<Void>>modify(@AuthenticatedUser User user,@RequestBody ModifyDto modifyDto, @PathVariable("messengerid") UUID messengerId)
-    {
+    public ResponseEntity<ResponseDto<Void>>modify(@AuthenticatedUser User user,@RequestBody ModifyDto modifyDto, @PathVariable("messengerid") UUID messengerId) {
         messengerService.modify(user,modifyDto,messengerId);
 
         return new ResponseEntity<>(ResponseDto.res(
@@ -76,7 +73,6 @@ public class MessengerController {
     //답장하기
     @PostMapping("/{messengerid}")
     public ResponseEntity<ResponseDto<Void>> replyMessenger(@AuthenticatedUser User user, @RequestBody @Valid ReplyDto replyDto, @PathVariable("messengerid") UUID messengerId) {
-
         messengerService.reply(user,replyDto,messengerId);
 
         return new ResponseEntity<>(ResponseDto.res(

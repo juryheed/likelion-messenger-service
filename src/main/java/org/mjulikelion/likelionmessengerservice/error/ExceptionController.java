@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionController {
 
     //ConflicException(중복) 핸들러
-    @ResponseStatus(HttpStatus.CONFLICT)//response HTTP 상태 코드를 404(NOT_FOUND)로 설정
-    @ExceptionHandler(ConflictException.class)//ConflicException예외를 처리하는 핸들러
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(ConflictException.class)
     public ResponseEntity<ErrorResponseDto> handleDuplicationException(
             ConflictException duplicationException) {
 

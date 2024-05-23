@@ -2,10 +2,9 @@ package org.mjulikelion.likelionmessengerservice.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mjulikelion.likelionmessengerservice.dto.request.ModifyDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.ReplyDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.SendMessengerDto;
-import org.mjulikelion.likelionmessengerservice.dto.response.MessengerResponseData;
+import org.mjulikelion.likelionmessengerservice.dto.request.messenger.ModifyDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.messenger.ReplyDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.messenger.SendMessengerDto;
 import org.mjulikelion.likelionmessengerservice.dto.response.OneMessengerResponseData;
 import org.mjulikelion.likelionmessengerservice.error.ErrorCode;
 import org.mjulikelion.likelionmessengerservice.error.exception.ForbiddenException;
@@ -13,6 +12,7 @@ import org.mjulikelion.likelionmessengerservice.error.exception.NotFoundExceptio
 import org.mjulikelion.likelionmessengerservice.model.Messenger;
 import org.mjulikelion.likelionmessengerservice.model.User;
 import org.mjulikelion.likelionmessengerservice.repository.MessengerRepository;
+import org.mjulikelion.likelionmessengerservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,11 +23,17 @@ import java.util.UUID;
 @AllArgsConstructor
 public class MessengerService {
     private MessengerRepository messengerRepository;
+    private UserRepository userRepository;
 
     //메신저 보내기
     public void sendMessenger(User user, SendMessengerDto sendMessengerDto){
-        //메세지 빌드로 만들기
+
         List<String> recievers = sendMessengerDto.getReceiver();    //받는건 여러명인데
+        //수신자 존재 검사
+        for(String r: recievers){
+            findUser(r);
+        }
+        //메신저 보내기
         for(String r: recievers){
             Messenger messenger=Messenger.builder()
                     .content(sendMessengerDto.getContent())
@@ -54,7 +60,6 @@ public class MessengerService {
             messenger.setCount("읽음");
             messengerRepository.save(messenger);
         }
-
 
         //읽을 메신저 생성
         OneMessengerResponseData oneMessengerResponseData=OneMessengerResponseData.builder()
@@ -108,6 +113,8 @@ public class MessengerService {
         //내가 수신자인지 획인 하기
         checkReceiver(user,messenger);
 
+        findUser(messenger.getSender());
+
         //찾은 메시지의 발신자와 수신자를 서로 바꿔서 메시지 작성하기
         Messenger newmessenger=Messenger.builder()
                 .content(replyDto.getContent())
@@ -154,6 +161,13 @@ public class MessengerService {
     private void checkRead(Messenger messenger){
         if(!(messenger.getCount().equals("안읽음"))){
             throw new ForbiddenException(ErrorCode.CANT_ACCESS);
+        }
+    }
+
+    public void findUser(String companyId){
+        User user=userRepository.findByCompanyId(companyId);
+        if(user==null){
+            throw new NotFoundException(ErrorCode.RECIEVER_NOT_FOUND);
         }
     }
 }

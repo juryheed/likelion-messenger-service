@@ -20,7 +20,7 @@ public class BoxService {
 
     // 전체 메신저 기록 보기
     public MessengerListResponseData messengerAll(User user) {
-        // 내가 수신,발신 인 모든 메신저 찾기
+        // 내가 수신,발신한 모든 메신저 찾기
         List<Messenger> messengers = messengerRepository.findBySenderOrReceiver(user.getCompanyId(), user.getCompanyId());
 
         List<MessengerResponseData> messengerResponseList = new LinkedList<>();

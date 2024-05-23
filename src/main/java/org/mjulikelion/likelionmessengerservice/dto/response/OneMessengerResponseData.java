@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @Builder
 public class OneMessengerResponseData {
-    //발신인, 내용 , 시간, 메신저ID가 있다
+    //발신자, 수신자, 내용 , 시간, 메신저ID가 있다
     private String receiver;
     private String sender;
     private String content;

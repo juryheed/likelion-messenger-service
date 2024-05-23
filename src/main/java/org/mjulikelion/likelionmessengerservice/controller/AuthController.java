@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import org.mjulikelion.likelionmessengerservice.authentication.AuthenticatedUser;
 import org.mjulikelion.likelionmessengerservice.authentication.JwtTokenProvider;
 import org.mjulikelion.likelionmessengerservice.dto.ResponseDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.LoginDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.SignupDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.user.LoginDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.user.SignupDto;
 import org.mjulikelion.likelionmessengerservice.model.User;
 import org.mjulikelion.likelionmessengerservice.service.AuthService;
 import org.mjulikelion.likelionmessengerservice.service.UserService;
@@ -28,6 +28,7 @@ public class AuthController {
     private final UserService userService;
     private final AuthService authService;
     private final JwtTokenProvider jwtTokenProvider;
+
     //회원가입
     @PostMapping("/signup")
     public ResponseEntity<ResponseDto<Void>>signup(@RequestBody @Valid SignupDto signupDto, HttpServletResponse response){

@@ -2,9 +2,9 @@ package org.mjulikelion.likelionmessengerservice.service;
 
 import lombok.AllArgsConstructor;
 import org.mjulikelion.likelionmessengerservice.authentication.PasswordHashEncryption;
-import org.mjulikelion.likelionmessengerservice.dto.request.LoginDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.ReNameDto;
-import org.mjulikelion.likelionmessengerservice.dto.request.RePasswordDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.user.LoginDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.user.ReNameDto;
+import org.mjulikelion.likelionmessengerservice.dto.request.user.RePasswordDto;
 import org.mjulikelion.likelionmessengerservice.error.ErrorCode;
 import org.mjulikelion.likelionmessengerservice.error.exception.ForbiddenException;
 import org.mjulikelion.likelionmessengerservice.model.User;
@@ -24,6 +24,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    //비밀번호 변경
     public void rePassword(User user, RePasswordDto rePasswordDto){
         //유저가 현재 비빌 번호를 알고 있는지 검사
         String plainPassword = rePasswordDto.getNowPassword();

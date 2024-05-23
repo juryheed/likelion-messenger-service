@@ -1,9 +1,8 @@
-package org.mjulikelion.likelionmessengerservice.dto.request;
+package org.mjulikelion.likelionmessengerservice.dto.request.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import org.hibernate.validator.constraints.Length;
 
 @Getter
 public class LoginDto {
